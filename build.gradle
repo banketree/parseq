@@ -68,7 +68,7 @@ subprojects {
 
   // Not include parseq-examples and parseq-legacy-examples, since we don't need to publish their jar files
   afterEvaluate {
-    if ((it.name.startsWith('parseq') && !it.name.endsWith('examples'))) {
+    if (it.name.startsWith('parseq') && !it.name.endsWith('examples') && !it.name.endsWith('tracevis')) {
       artifacts {
         archives jar
         archives packageJavadoc

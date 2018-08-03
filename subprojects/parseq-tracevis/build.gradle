@@ -58,7 +58,10 @@ configurations {
 }
 
 
-task node_modules(dependsOn: ['npmSetup', 'npmInstall']) {} // install packages in package.json
+task node_modules(type: Exec, dependsOn: ['npmSetup', 'npmInstall']) {// install packages in package.json
+  workingDir = projectDir
+  commandLine "/bin/sh", "-c", "npm install"
+}
 
 task makeBuild {
   dependsOn 'buildModuleJS'
@@ -284,7 +287,8 @@ artifacts {
 }
 
 configurations.archives.artifacts.with { archives ->
-  archives.findAll { !(it.file =~ 'tar.gz') }.each { remove(it) }
+  archives.findAll { !(it.file =~ 'tar.gz') }.each {
+    remove(it) }
 }
 
 uploadArchives {
