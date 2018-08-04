@@ -196,7 +196,7 @@ task testIntCov(type: NodeTask, dependsOn: 'buildInstrumentationModule'){
   }
 
   script = file("${PHANTOMJS}")
-  args = ["${projectDir}/test/int"]
+  args = ["${projectDir}/test/int/int-test.js"]
   execOverrides {
     it.workingDir = projectDir
   }

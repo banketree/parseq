@@ -6,9 +6,10 @@ dependencies {
     compile project(":parseq-batching")
 }
 
+
 task fatJar(type: Jar) {
   classifier = 'jar-with-dependencies'
-  from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+  from { configurations.compile.collect { it.isDirectory()? it : zipTree(it) } }
   with jar
   manifest {
     attributes("Created-By": "Gradle",
@@ -18,6 +19,12 @@ task fatJar(type: Jar) {
     attributes 'Main-Class': 'com.linkedin.parseq.PerfLarge'
   }
 }
+
+task executeJava(type: JavaExec) {
+  main = "com.linkedin.parseq.PerfLarge"
+  classpath = sourceSets.main.runtimeClasspath
+}
+
 
 
 artifacts {
