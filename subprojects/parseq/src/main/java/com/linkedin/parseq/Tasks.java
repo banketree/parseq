@@ -255,10 +255,10 @@ public class Tasks {
   /**
    * Creates a new task that will run the given tasks in parallel (e.g. task1
    * can be executed at the same time as task2). When all tasks complete
-   * successfully, you can use {@link ParTask#get()} to
+   * successfully, you can use {@link com.linkedin.parseq.ParTask#get()} to
    * get a list of the results. If at least one task failed, then this task will
-   * also be marked as failed. Use {@link ParTask#getTasks()}
-   * or {@link ParTask#getSuccessful()} to get results in
+   * also be marked as failed. Use {@link com.linkedin.parseq.ParTask#getTasks()}
+   * or {@link com.linkedin.parseq.ParTask#getSuccessful()} to get results in
    * this case.
    * @deprecated  As of 2.0.0, replaced by {@link Task#par(Task, Task) Task.par}
    * @see Task#par(Task, Task) Task.par
@@ -422,10 +422,10 @@ public class Tasks {
    * type-safe</strong> - prefer one of the {@code par} options when possible.
    * <p>
    * When all tasks complete successfully, you can use
-   * {@link ParTask#get()} to get a list of the results. If
+   * {@link com.linkedin.parseq.ParTask#get()} to get a list of the results. If
    * at least one task failed, then this task will also be marked as failed. Use
-   * {@link ParTask#getTasks()} or
-   * {@link ParTask#getSuccessful()} to get results in this
+   * {@link com.linkedin.parseq.ParTask#getTasks()} or
+   * {@link com.linkedin.parseq.ParTask#getSuccessful()} to get results in this
    * case.
    *
    * @param tasks the tasks to run in parallel

@@ -161,7 +161,8 @@ public interface Tuple4Task<T1, T2, T3, T4> extends Task<Tuple4<T1, T2, T3, T4>>
    * {@inheritDoc}
    */
   @Override
-  default Tuple4Task<T1, T2, T3, T4> recoverWith(final String desc, final Function1<Throwable, Task<Tuple4<T1, T2, T3, T4>>> f) {
+  default Tuple4Task<T1, T2, T3, T4> recoverWith(final String desc,
+      final Function1<Throwable, Task<Tuple4<T1, T2, T3, T4>>> f) {
     return cast(Task.super.recoverWith(desc, f));
   }
 

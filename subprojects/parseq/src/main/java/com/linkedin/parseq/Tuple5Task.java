@@ -145,7 +145,8 @@ public interface Tuple5Task<T1, T2, T3, T4, T5> extends Task<Tuple5<T1, T2, T3, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple5Task<T1, T2, T3, T4, T5> recover(final String desc, final Function1<Throwable, Tuple5<T1, T2, T3, T4, T5>> f) {
+  default Tuple5Task<T1, T2, T3, T4, T5> recover(final String desc,
+      final Function1<Throwable, Tuple5<T1, T2, T3, T4, T5>> f) {
     return cast(Task.super.recover(desc, f));
   }
 
@@ -161,7 +162,8 @@ public interface Tuple5Task<T1, T2, T3, T4, T5> extends Task<Tuple5<T1, T2, T3, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple5Task<T1, T2, T3, T4, T5> recoverWith(final String desc, final Function1<Throwable, Task<Tuple5<T1, T2, T3, T4, T5>>> f) {
+  default Tuple5Task<T1, T2, T3, T4, T5> recoverWith(final String desc,
+      final Function1<Throwable, Task<Tuple5<T1, T2, T3, T4, T5>>> f) {
     return cast(Task.super.recoverWith(desc, f));
   }
 

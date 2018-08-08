@@ -24,7 +24,7 @@ import java.io.OutputStream;
 
 
 /**
- * Interface for encoding/decoding the {@link Trace}
+ * Interface for encoding/decoding the {@link com.linkedin.parseq.trace.Trace}
  * @author Chi Chan (ckchan@linkedin.com)
  */
 public interface TraceCodec {
@@ -57,7 +57,7 @@ public interface TraceCodec {
   void encode(Trace trace, OutputStream outputStream) throws IOException;
 
   /**
-   * Similar to {@link #encode(Trace, OutputStream)}
+   * Similar to {@link #encode(com.linkedin.parseq.trace.Trace, OutputStream)}
    * but produces a String that contains the trace instead of writing it to an
    * OutputStream.
    *

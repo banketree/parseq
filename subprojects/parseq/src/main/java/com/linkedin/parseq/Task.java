@@ -16,7 +16,6 @@
 
 package com.linkedin.parseq;
 
-import com.linkedin.parseq.function.Consumer1;
 import java.util.Collection;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionStage;
@@ -31,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.linkedin.parseq.function.Action;
+import com.linkedin.parseq.function.Consumer1;
 import com.linkedin.parseq.function.Failure;
 import com.linkedin.parseq.function.Function1;
 import com.linkedin.parseq.function.Success;
@@ -1247,9 +1247,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1273,9 +1273,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1301,9 +1301,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1330,9 +1330,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1360,9 +1360,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1391,9 +1391,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1424,9 +1424,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1458,9 +1458,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1494,9 +1494,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1531,9 +1531,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1570,9 +1570,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1610,9 +1610,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1652,9 +1652,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1695,9 +1695,9 @@ public interface Task<T> extends Promise<T>, Cancellable {
    *          user.getFirstName() + user.getLastName() + " working for " + company.getName());
    * </pre></blockquote>
    *
-   * If any of tasks passed in as a parameters fails then returned task will also fail immediately.
+   * If any of tasks passed in as a parameter fails then returned task will also fail immediately.
    * In this case returned task will be resolved with error from the first of failing tasks and other
-   * tasks will be cancelled (if possible).
+   * tasks will be cancelled if they have not been completed yet. Tasks will be started in an arbitrary order.
    * <p>
    * @return task that will run given tasks in parallel
    */
@@ -1730,13 +1730,13 @@ public interface Task<T> extends Promise<T>, Cancellable {
    * tasks[0] can be run at the same time as tasks[1]).
    * <p>
    * When all tasks complete successfully, you can use
-   * {@link ParTask#get()} to get a list of the results. If
+   * {@link com.linkedin.parseq.ParTask#get()} to get a list of the results. If
    * at least one task failed, then this task will also be marked as failed. Use
-   * {@link ParTask#getTasks()} or
-   * {@link ParTask#getSuccessful()} to get results in this
+   * {@link com.linkedin.parseq.ParTask#getTasks()} or
+   * {@link com.linkedin.parseq.ParTask#getSuccessful()} to get results in this
    * case.
    * <p>
-   * If the Iterable of tasks is empty, {@link ParTask#get()}
+   * If the Iterable of tasks is empty, {@link com.linkedin.parseq.ParTask#get()}
    * will return an empty list.
    * <p>
    * Note that resulting task does not fast-fail e.g. if one of the tasks fail others

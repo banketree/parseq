@@ -33,7 +33,7 @@ import java.nio.charset.Charset;
 
 
 /**
- * JSON implementation of {@link TraceCodec}
+ * JSON implementation of {@link com.linkedin.parseq.trace.codec.TraceCodec}
  *
  * @author Chi Chan (ckchan@linkedin.com)
  * @author Chris Pettitt (cpettitt@linkedin.com)
