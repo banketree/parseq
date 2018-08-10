@@ -19,48 +19,30 @@ buildscript {
 
 
 configurations {
-  buildBootstrap {
-    description "build time dependencies"
-    //visible = false
-  }
-
   bootstrap {
     description "bootstrapping dependencies"
     //visible = false
   }
 
-  compile {
-    description "compile time dependencies"
-    extendsFrom buildBootstrap
-  }
-
-  runtime {
-    description "dependencies required to run parseq"
-    extendsFrom buildBootstrap
-  }
-
-  testCompile {
-    description "compile classpath for source set 'test'"
-    extendsFrom buildBootstrap
-    //visible = false
-  }
-
   testArtifacts
+  testUtilCompile {
+    description "test utility compile time dependencies"
+  }
 }
 
 dependencies {
-  buildBootstrap group: "org.codehaus.jackson", name: "jackson-core-asl", version: '1.8.8'
-  buildBootstrap group: "org.codehaus.jackson", name: "jackson-mapper-asl", version: "1.8.8"
-  buildBootstrap group: "org.slf4j", name: "slf4j-api", version: "1.7.25"
+  compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.8.8'
+  compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.8.8'
+  compile group: "org.slf4j", name: "slf4j-api", version: "1.7.25"
   bootstrap group: "net.sourceforge.fmpp", name: "fmpp", version: "0.9.15"
 
-  buildBootstrap group: "org.testng", name: "testng", version: "6.9.9"
+  testUtilCompile group: "org.testng", name: "testng", version: "6.9.9"
   testCompile group: "org.slf4j", name: "slf4j-log4j12", version: "1.7.25"
 }
 
 sourceSets {
   testUtils {
-    compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.runtimeClasspath + configurations.buildBootstrap +sourceSets.main.output
+    compileClasspath += sourceSets.main.compileClasspath + sourceSets.main.runtimeClasspath + configurations.compile + configurations.testUtilCompile + sourceSets.main.output
     runtimeClasspath += sourceSets.main.compileClasspath + output
     java {
       srcDirs = ['src/test-utils/java']
@@ -94,7 +76,7 @@ task packageTestJar(type: Jar) {
 
 task testUtilsJavadoc(type: Javadoc) {
   source sourceSets.testUtils.allJava
-  classpath = sourceSets.main.output +  sourceSets.main.runtimeClasspath
+  classpath = sourceSets.main.output +  sourceSets.main.runtimeClasspath + sourceSets.testUtils.compileClasspath
   destinationDir = reporting.file("${buildDir}/docs-test")
 }
 task packageTestJavadoc(type: Jar, dependsOn: ['testUtilsJavadoc']) {

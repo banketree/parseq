@@ -1,3 +1,6 @@
+import com.sun.org.apache.xalan.internal.xsltc.compiler.If
+
+
 description = """Serves tracevis tool capable of rendering graphviz diagrams"""
 
 def jettyVersion = '9.3.0.v20150612'
@@ -10,9 +13,11 @@ dependencies {
   compile project(":parseq-exec")
   compile project(":parseq-http-client")
 
-  tracevisTarGz project(path: ':parseq-tracevis', configuration: 'tracevisArtifacts')
+  compile project(path: ':parseq-tracevis', configuration: 'tracevisArtifacts')
+  //TODO DELETE
+  //tracevisTarGz project(path: ':parseq-tracevis', configuration: 'tracevisArtifacts')
   // If you didn't change any code in tracevis module, you can use below dependencies to build current module
-  // tracevisTarGz group: 'com.linkedin.parseq', name: 'parseq-tracevis', version: version, ext: 'tar.gz'
+  // compile group: 'com.linkedin.parseq', name: 'parseq-tracevis', version: version, ext: 'tar.gz'
   compile group: 'org.eclipse.jetty', name: 'jetty-server', version: jettyVersion
   compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: jettyVersion
   compile group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.12'
@@ -21,8 +26,18 @@ dependencies {
 
 task fatJar(type: Jar, dependsOn: ':parseq-tracevis:makeDist') {
   classifier = 'jar-with-dependencies'
-  from configurations.tracevisTarGz.collect { it.isDirectory() ? it : tarTree(it) }
-  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  //TODO DELETE
+  //from configurations.tracevisTarGz.collect { it.isDirectory() ? it : tarTree(it) }
+  //from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+  from configurations.compile.collect {
+    if (it.isDirectory()) {
+      it
+    } else if (it.name.endsWith('tar.gz')){
+      tarTree(it)
+    } else {
+      zipTree(it)
+    }
+  }
 
   with jar
   manifest {

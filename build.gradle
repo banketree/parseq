@@ -21,7 +21,7 @@ subprojects {
   targetCompatibility = 1.8
   archivesBaseName = project.name
 
-  if (it.name.startsWith('parseq-') && !it.name.equals("parseq-lambda-names")) { // all contrib modules
+  if (it.name.startsWith('parseq-') && !it.name.equals("parseq-lambda-names") && !it.name.equals("parseq-tracevis")) { // all contrib modules
     dependencies {
       compile project(":parseq")
     }
