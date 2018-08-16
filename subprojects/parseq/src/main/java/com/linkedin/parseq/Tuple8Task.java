@@ -129,8 +129,7 @@ public interface Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> extends Task<Tuple8<
    * @param consumer consumer of a value returned by this task
    * @return a new task which will complete with result of this task
    */
-  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> andThen(final String desc,
-      final Consumer8<T1, T2, T3, T4, T5, T6, T7, T8> consumer) {
+  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> andThen(final String desc, final Consumer8<T1, T2, T3, T4, T5, T6, T7, T8> consumer) {
     return cast(andThen(desc, tuple -> consumer.accept(tuple._1(), tuple._2(), tuple._3(), tuple._4(), tuple._5(), tuple._6(), tuple._7(), tuple._8())));
   }
 
@@ -138,8 +137,7 @@ public interface Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> extends Task<Tuple8<
    * {@inheritDoc}
    */
   @Override
-  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> recover(
-      final Function1<Throwable, Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> f) {
+  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> recover(final Function1<Throwable, Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> f) {
     return cast(Task.super.recover(f));
   }
 
@@ -147,8 +145,7 @@ public interface Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> extends Task<Tuple8<
    * {@inheritDoc}
    */
   @Override
-  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> recover(final String desc,
-      final Function1<Throwable, Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> f) {
+  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> recover(final String desc, final Function1<Throwable, Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> f) {
     return cast(Task.super.recover(desc, f));
   }
 
@@ -156,8 +153,7 @@ public interface Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> extends Task<Tuple8<
    * {@inheritDoc}
    */
   @Override
-  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> recoverWith(
-      final Function1<Throwable, Task<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>>> f) {
+  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> recoverWith(final Function1<Throwable, Task<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>>> f) {
     return cast(Task.super.recoverWith(f));
   }
 
@@ -165,8 +161,7 @@ public interface Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> extends Task<Tuple8<
    * {@inheritDoc}
    */
   @Override
-  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> recoverWith(final String desc,
-      final Function1<Throwable, Task<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>>> f) {
+  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> recoverWith(final String desc, final Function1<Throwable, Task<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>>> f) {
     return cast(Task.super.recoverWith(desc, f));
   }
 
@@ -182,8 +177,7 @@ public interface Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> extends Task<Tuple8<
    * {@inheritDoc}
    */
   @Override
-  public default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> onFailure(final String desc,
-      final Consumer1<Throwable> consumer) {
+  public default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> onFailure(final String desc, final Consumer1<Throwable> consumer) {
     return cast(Task.super.onFailure(desc, consumer));
   };
 
@@ -207,8 +201,7 @@ public interface Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> extends Task<Tuple8<
    * Equivalent to {@code withSideEffect("sideEffect", func)}.
    * @see #withSideEffect(String, Function8)
    */
-  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> withSideEffect(
-      Function8<T1, T2, T3, T4, T5, T6, T7, T8, Task<?>> func) {
+  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> withSideEffect(Function8<T1, T2, T3, T4, T5, T6, T7, T8, Task<?>> func) {
     return cast(Task.super.withSideEffect("sideEffect: " + _taskDescriptor.getDescription(func.getClass().getName()), tuple -> func.apply(tuple._1(), tuple._2(), tuple._3(), tuple._4(), tuple._5(), tuple._6(), tuple._7(), tuple._8())));
   }
 
@@ -242,13 +235,11 @@ public interface Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> extends Task<Tuple8<
    * @return a new task that will run side effect task specified by given function upon succesful
    * completion of this task
    */
-  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> withSideEffect(final String desc,
-      Function8<T1, T2, T3, T4, T5, T6, T7, T8, Task<?>> func) {
+  default Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> withSideEffect(final String desc, Function8<T1, T2, T3, T4, T5, T6, T7, T8, Task<?>> func) {
     return cast(Task.super.withSideEffect(desc, tuple -> func.apply(tuple._1(), tuple._2(), tuple._3(), tuple._4(), tuple._5(), tuple._6(), tuple._7(), tuple._8())));
   }
 
-  public static <T1, T2, T3, T4, T5, T6, T7, T8> Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> cast(
-      final Task<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> task) {
+  public static <T1, T2, T3, T4, T5, T6, T7, T8> Tuple8Task<T1, T2, T3, T4, T5, T6, T7, T8> cast(final Task<Tuple8<T1, T2, T3, T4, T5, T6, T7, T8>> task) {
     return new Tuple8TaskDelegate<>(task);
   }
 

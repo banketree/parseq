@@ -129,8 +129,7 @@ public interface Tuple6Task<T1, T2, T3, T4, T5, T6> extends Task<Tuple6<T1, T2, 
    * @param consumer consumer of a value returned by this task
    * @return a new task which will complete with result of this task
    */
-  default Tuple6Task<T1, T2, T3, T4, T5, T6> andThen(final String desc,
-      final Consumer6<T1, T2, T3, T4, T5, T6> consumer) {
+  default Tuple6Task<T1, T2, T3, T4, T5, T6> andThen(final String desc, final Consumer6<T1, T2, T3, T4, T5, T6> consumer) {
     return cast(andThen(desc, tuple -> consumer.accept(tuple._1(), tuple._2(), tuple._3(), tuple._4(), tuple._5(), tuple._6())));
   }
 
@@ -146,8 +145,7 @@ public interface Tuple6Task<T1, T2, T3, T4, T5, T6> extends Task<Tuple6<T1, T2, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple6Task<T1, T2, T3, T4, T5, T6> recover(final String desc,
-      final Function1<Throwable, Tuple6<T1, T2, T3, T4, T5, T6>> f) {
+  default Tuple6Task<T1, T2, T3, T4, T5, T6> recover(final String desc, final Function1<Throwable, Tuple6<T1, T2, T3, T4, T5, T6>> f) {
     return cast(Task.super.recover(desc, f));
   }
 
@@ -155,8 +153,7 @@ public interface Tuple6Task<T1, T2, T3, T4, T5, T6> extends Task<Tuple6<T1, T2, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple6Task<T1, T2, T3, T4, T5, T6> recoverWith(
-      final Function1<Throwable, Task<Tuple6<T1, T2, T3, T4, T5, T6>>> f) {
+  default Tuple6Task<T1, T2, T3, T4, T5, T6> recoverWith(final Function1<Throwable, Task<Tuple6<T1, T2, T3, T4, T5, T6>>> f) {
     return cast(Task.super.recoverWith(f));
   }
 
@@ -164,8 +161,7 @@ public interface Tuple6Task<T1, T2, T3, T4, T5, T6> extends Task<Tuple6<T1, T2, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple6Task<T1, T2, T3, T4, T5, T6> recoverWith(final String desc,
-      final Function1<Throwable, Task<Tuple6<T1, T2, T3, T4, T5, T6>>> f) {
+  default Tuple6Task<T1, T2, T3, T4, T5, T6> recoverWith(final String desc, final Function1<Throwable, Task<Tuple6<T1, T2, T3, T4, T5, T6>>> f) {
     return cast(Task.super.recoverWith(desc, f));
   }
 
@@ -239,13 +235,11 @@ public interface Tuple6Task<T1, T2, T3, T4, T5, T6> extends Task<Tuple6<T1, T2, 
    * @return a new task that will run side effect task specified by given function upon succesful
    * completion of this task
    */
-  default Tuple6Task<T1, T2, T3, T4, T5, T6> withSideEffect(final String desc,
-      Function6<T1, T2, T3, T4, T5, T6, Task<?>> func) {
+  default Tuple6Task<T1, T2, T3, T4, T5, T6> withSideEffect(final String desc, Function6<T1, T2, T3, T4, T5, T6, Task<?>> func) {
     return cast(Task.super.withSideEffect(desc, tuple -> func.apply(tuple._1(), tuple._2(), tuple._3(), tuple._4(), tuple._5(), tuple._6())));
   }
 
-  public static <T1, T2, T3, T4, T5, T6> Tuple6Task<T1, T2, T3, T4, T5, T6> cast(
-      final Task<Tuple6<T1, T2, T3, T4, T5, T6>> task) {
+  public static <T1, T2, T3, T4, T5, T6> Tuple6Task<T1, T2, T3, T4, T5, T6> cast(final Task<Tuple6<T1, T2, T3, T4, T5, T6>> task) {
     return new Tuple6TaskDelegate<>(task);
   }
 

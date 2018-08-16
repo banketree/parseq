@@ -129,8 +129,7 @@ public interface Tuple7Task<T1, T2, T3, T4, T5, T6, T7> extends Task<Tuple7<T1, 
    * @param consumer consumer of a value returned by this task
    * @return a new task which will complete with result of this task
    */
-  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> andThen(final String desc,
-      final Consumer7<T1, T2, T3, T4, T5, T6, T7> consumer) {
+  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> andThen(final String desc, final Consumer7<T1, T2, T3, T4, T5, T6, T7> consumer) {
     return cast(andThen(desc, tuple -> consumer.accept(tuple._1(), tuple._2(), tuple._3(), tuple._4(), tuple._5(), tuple._6(), tuple._7())));
   }
 
@@ -138,8 +137,7 @@ public interface Tuple7Task<T1, T2, T3, T4, T5, T6, T7> extends Task<Tuple7<T1, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> recover(
-      final Function1<Throwable, Tuple7<T1, T2, T3, T4, T5, T6, T7>> f) {
+  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> recover(final Function1<Throwable, Tuple7<T1, T2, T3, T4, T5, T6, T7>> f) {
     return cast(Task.super.recover(f));
   }
 
@@ -147,8 +145,7 @@ public interface Tuple7Task<T1, T2, T3, T4, T5, T6, T7> extends Task<Tuple7<T1, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> recover(final String desc,
-      final Function1<Throwable, Tuple7<T1, T2, T3, T4, T5, T6, T7>> f) {
+  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> recover(final String desc, final Function1<Throwable, Tuple7<T1, T2, T3, T4, T5, T6, T7>> f) {
     return cast(Task.super.recover(desc, f));
   }
 
@@ -156,8 +153,7 @@ public interface Tuple7Task<T1, T2, T3, T4, T5, T6, T7> extends Task<Tuple7<T1, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> recoverWith(
-      final Function1<Throwable, Task<Tuple7<T1, T2, T3, T4, T5, T6, T7>>> f) {
+  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> recoverWith(final Function1<Throwable, Task<Tuple7<T1, T2, T3, T4, T5, T6, T7>>> f) {
     return cast(Task.super.recoverWith(f));
   }
 
@@ -165,8 +161,7 @@ public interface Tuple7Task<T1, T2, T3, T4, T5, T6, T7> extends Task<Tuple7<T1, 
    * {@inheritDoc}
    */
   @Override
-  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> recoverWith(final String desc,
-      final Function1<Throwable, Task<Tuple7<T1, T2, T3, T4, T5, T6, T7>>> f) {
+  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> recoverWith(final String desc, final Function1<Throwable, Task<Tuple7<T1, T2, T3, T4, T5, T6, T7>>> f) {
     return cast(Task.super.recoverWith(desc, f));
   }
 
@@ -182,8 +177,7 @@ public interface Tuple7Task<T1, T2, T3, T4, T5, T6, T7> extends Task<Tuple7<T1, 
    * {@inheritDoc}
    */
   @Override
-  public default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> onFailure(final String desc,
-      final Consumer1<Throwable> consumer) {
+  public default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> onFailure(final String desc, final Consumer1<Throwable> consumer) {
     return cast(Task.super.onFailure(desc, consumer));
   };
 
@@ -241,13 +235,11 @@ public interface Tuple7Task<T1, T2, T3, T4, T5, T6, T7> extends Task<Tuple7<T1, 
    * @return a new task that will run side effect task specified by given function upon succesful
    * completion of this task
    */
-  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> withSideEffect(final String desc,
-      Function7<T1, T2, T3, T4, T5, T6, T7, Task<?>> func) {
+  default Tuple7Task<T1, T2, T3, T4, T5, T6, T7> withSideEffect(final String desc, Function7<T1, T2, T3, T4, T5, T6, T7, Task<?>> func) {
     return cast(Task.super.withSideEffect(desc, tuple -> func.apply(tuple._1(), tuple._2(), tuple._3(), tuple._4(), tuple._5(), tuple._6(), tuple._7())));
   }
 
-  public static <T1, T2, T3, T4, T5, T6, T7> Tuple7Task<T1, T2, T3, T4, T5, T6, T7> cast(
-      final Task<Tuple7<T1, T2, T3, T4, T5, T6, T7>> task) {
+  public static <T1, T2, T3, T4, T5, T6, T7> Tuple7Task<T1, T2, T3, T4, T5, T6, T7> cast(final Task<Tuple7<T1, T2, T3, T4, T5, T6, T7>> task) {
     return new Tuple7TaskDelegate<>(task);
   }
 

@@ -1,3 +1,5 @@
+apply from: file("gradle/versioning.gradle")
+
 allprojects { // for all projects including the root project
   apply plugin: 'idea'
   // TODO NOT SURE NEED THIS
@@ -6,6 +8,7 @@ allprojects { // for all projects including the root project
   apply plugin: 'maven'
   apply plugin: 'signing'
 
+  version = rootProject.version
   group = 'com.linkedin.parseq'
 
   repositories {
