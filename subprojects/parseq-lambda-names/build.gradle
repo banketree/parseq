@@ -45,4 +45,5 @@ jar {
   }
 }
 
+uploadArchives.dependsOn shadowJar
 assemble.dependsOn shadowJar
