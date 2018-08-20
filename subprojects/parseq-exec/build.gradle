@@ -4,7 +4,6 @@ description = """Integrates ParSeq with Java Process API"""
 uploadArchives {
   repositories {
     mavenDeployer {
-      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
       pom.project {
         developers {
           developer {

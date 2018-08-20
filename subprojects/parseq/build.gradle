@@ -104,8 +104,6 @@ uploadArchives {
   repositories {
     mavenDeployer {
       pom.artifactId = 'parseq'
-      // pom signature
-      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
     }
   }
 }

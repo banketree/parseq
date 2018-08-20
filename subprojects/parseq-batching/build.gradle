@@ -12,7 +12,6 @@ dependencies {
 uploadArchives {
   repositories {
     mavenDeployer {
-      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
       pom.project {
         developers {
           developer {

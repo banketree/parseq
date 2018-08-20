@@ -84,9 +84,11 @@ subprojects {
   }
 
   // sign up
-  signing {
-    required = { gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
+  if (project.hasProperty('ossRelease')) {
+    signing {
+      required = { gradle.taskGraph.hasTask("uploadArchives") }
+      sign configurations.archives
+    }
   }
 
   // publish to maven and local ivy repo
@@ -95,10 +97,10 @@ subprojects {
       ivy { url "file:$rootDir/build/ivy-repo" }
 
       mavenDeployer {
-        // pom signature
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
         if (project.hasProperty('ossRelease')) {
+          // pom signature
+          beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
           repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
             authentication(userName: sonatypeUsername, password: sonatypePassword)
           }
