@@ -21,10 +21,11 @@ buildscript {
 configurations {
   bootstrap {
     description "bootstrapping dependencies"
-    //visible = false
+    visible = false
   }
 
-  testArtifacts
+  testArtifact
+
   testUtilCompile {
     description "test utility compile time dependencies"
   }
@@ -67,6 +68,7 @@ javadoc {
 task testJar(type: Jar) {
   from sourceSets.testUtils.output
   from sourceSets.main.output
+  classifier = 'test'
 }
 
 task packageTestJar(type: Jar) {
@@ -91,7 +93,7 @@ task packageTestSources(type: Jar, dependsOn: 'classes') {
 }
 
 artifacts {
-  testArtifacts testJar
+  testArtifact testJar
   archives packageTestJar
   archives packageTestJavadoc
   archives packageTestSources

@@ -16,7 +16,7 @@ dependencies {
     testCompile group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.12'
     testCompile group: 'com.linkedin.pegasus', name: 'restli-int-test-server', version:'11.0.0'
     testCompile group: 'com.linkedin.pegasus', name: 'r2-netty', version:'11.0.0'
-    testCompile project(path: ':parseq', configuration: 'testArtifacts')
+    testCompile project(path: ':parseq', configuration: 'testArtifact')
 
     antlr "org.antlr:antlr4:4.5"
 }

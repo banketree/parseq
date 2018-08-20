@@ -58,10 +58,8 @@ configurations {
 }
 
 
-task node_modules(type: Exec, dependsOn: ['npmSetup', 'npmInstall']) {// install packages in package.json
-  workingDir = projectDir
-  commandLine "/bin/sh", "-c", "npm install"
-}
+task node_modules(dependsOn: ['npmSetup', 'npmInstall']) {}// install packages in package.json
+
 
 task makeBuild {
   dependsOn 'buildModuleJS'

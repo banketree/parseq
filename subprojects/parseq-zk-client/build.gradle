@@ -5,7 +5,7 @@ dependencies {
   compile group: 'org.apache.zookeeper', name: 'zookeeper', version:'3.4.6'
   testCompile group: 'org.testng', name: 'testng', version:'6.9.9'
   testCompile group: 'com.linkedin.pegasus', name: 'd2', version:'2.6.0'
-  testCompile project(path: ':parseq', configuration: 'testArtifacts')
+  testCompile project(path: ':parseq', configuration: 'testArtifact')
 }
 
 uploadArchives {
